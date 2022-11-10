@@ -1,8 +1,8 @@
 import express from "express";
 import { MongoClient, ObjectId } from "mongodb";
 
-const URL = 'mongodb://127.0.0.1:27017';
-// const URL = 'mongodb+srv://admin:LdQHrR3iAM9u4Mtw@cluster0.0tjjv1e.mongodb.net';
+// const URL = 'mongodb://127.0.0.1:27017';
+const URL = 'mongodb+srv://admin:x4fspn5Id8kKjFWy@cluster0.z1puxok.mongodb.net/';
 const DB_NAME = 'ocean_jornada_fullstack_novembro_2022';
 
 
