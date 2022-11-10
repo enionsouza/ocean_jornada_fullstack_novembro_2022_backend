@@ -1,48 +1,54 @@
 import express from "express";
+import { MongoClient, ObjectId } from "mongodb";
+
+const URL = 'mongodb://127.0.0.1:27017';
+// const URL = 'mongodb+srv://admin:LdQHrR3iAM9u4Mtw@cluster0.0tjjv1e.mongodb.net';
+const DB_NAME = 'ocean_jornada_fullstack_novembro_2022';
+
+
+const client = await MongoClient.connect(URL);
+
+const bancoDados = client.db(DB_NAME);
+const collection = bancoDados.collection('itens');
 
 const app = express();
 app.use(express.json());
 
-app.get('/hello', (req, res) => {
+app.get('/hello', (_, res) => {
   res.send('Hello World');
 });
 
-const items = ['Café Pelé', 'Café Pilão', 'Nescafé', 'Melita', "Café do Norte"];
-
 // [GET] /items - Read all
-app.get('/items', (req, res) => {
-  res.send(items.filter((item) => item != null));
+app.get('/items', async (_, res) => {
+  const documentos = await collection.find().toArray();
+  res.send(documentos);
 });
 
 // [GET] /items/:id - Read by Id
-app.get('/items/:id', (req, res) => {
-  res.send(items[req.params.id - 1]);
+app.get('/items/:id', async (req, res) => {
+  const id = new ObjectId(req.params.id);
+  res.send(await collection.findOne({ _id: id }));
 });
 
 // [POST] /items - Create item
-app.post('/items', (req, res) => {
-  try {
-    items.push(req.body.item);
-    res.send(`Item '${req.body.item}' criado!`);
-  } catch (error) {
-    console.log(error);
-    res.send(`Error: ${error}`);
-  }
+app.post('/items', async (req, res) => {
+  await collection.insertOne(req.body);
+  res.send('Item successfully created!');
 });
 
 // [PUT] /items/:id - Update item
-app.put('/items/:id', (req, res) => {
-  const id = req.params.id - 1;
-  const novoItem = req.body.item;
-  items[id] = novoItem;
-  res.send(`Item alterado para '${id + 1}: ${novoItem}'`);
+app.put('/items/:id', async (req, res) => {
+  const newItem = { nome: req.body.nome || 'Name was not provided' };
+  const id_to_update = new ObjectId(req.params.id);
+  await collection.updateOne({_id: id_to_update}, {$set: newItem});
+  res.send(`Item updated: '${newItem.nome}'`);
 });
 
 // [DELETE] /items/:id - Delete item
-app.delete('/items/:id', (req, res) => {
-  const id = req.params.id - 1;
-  delete items[id];
-  res.send('Item excluído da base de dados');
+app.delete('/items/:id', async (req, res) => {
+  const id_to_delete = new ObjectId(req.params.id);
+  await collection.deleteOne({ _id: id_to_delete });
+  res.send('Item successfully deleted!');
 });
 
 app.listen(3000, () => {
