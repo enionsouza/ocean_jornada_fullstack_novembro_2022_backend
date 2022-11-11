@@ -14,7 +14,7 @@ const collection = bancoDados.collection('itens');
 const app = express();
 app.use(express.json());
 
-app.get('/hello', (_, res) => {
+app.get('/', (_, res) => {
   res.send('Hello World');
 });
 
@@ -51,6 +51,6 @@ app.delete('/items/:id', async (req, res) => {
   res.send('Item successfully deleted!');
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('Listening on http://localhost:3000/...');
 });
