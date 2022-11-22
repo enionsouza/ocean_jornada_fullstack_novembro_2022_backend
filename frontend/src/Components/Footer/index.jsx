@@ -1,11 +1,10 @@
 import './style.css';
-import brand from '../../assets/brand.svg';
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       Todos os direitos reservados
-    </div>
+    </footer>
   )
 }
 
