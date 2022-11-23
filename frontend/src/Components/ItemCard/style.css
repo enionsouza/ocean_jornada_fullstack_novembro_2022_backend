@@ -1,0 +1,21 @@
+.item-card {
+  border: solid 1px black;
+  border-radius: 5px;
+  padding: 5px;
+  -webkit-box-shadow: 0px -8px 7px -2px #7c4c30, 0px 8px 7px -2px #7c4c30; 
+  box-shadow: 0px -8px 7px -2px #7c4c30, 0px 8px 7px -2px #7c4c30;
+  background-color: #f6f6f6;
+  padding: 1rem;
+}
+
+.item-card-title {
+  display: flex;
+  gap: 5px;
+  padding: 0.5rem;
+}
+
+.item-card-title-vbar {
+  height: 2.5rem;
+  width: 0.35rem;
+  background-color: #7c4c30;
+}
