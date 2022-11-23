@@ -38,7 +38,10 @@ app.post('/items', async (req, res) => {
 
 // [PUT] /items/:id - Update item
 app.put('/items/:id', async (req, res) => {
-  const newItem = { nome: req.body.nome || 'Name was not provided' };
+  const newItem = { 
+      nome: req.body.nome || 'Name was not provided',
+      imagemURL: req.body.imagemURL || 'No image'
+    };
   const id_to_update = new ObjectId(req.params.id);
   await collection.updateOne({_id: id_to_update}, {$set: newItem});
   res.send(`Item updated: '${newItem.nome}'`);
