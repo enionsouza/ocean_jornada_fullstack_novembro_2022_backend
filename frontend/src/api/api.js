@@ -8,6 +8,9 @@ export const Api = {
     readAll: function() {
       return this.endpoint() + '/';
     },
+    readById: function(id) {
+      return this.endpoint() + `/${id}`;
+    },
   },
   buildApiGetRequest: function(url) {
     return fetch(url, {

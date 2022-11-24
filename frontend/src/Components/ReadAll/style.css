@@ -5,3 +5,7 @@
   justify-content: center;
   margin: 2rem auto;
 }
+
+.item-card-clickable:hover {
+  cursor: pointer;
+}

@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Api } from '../../api/api';
 import ItemCard from '../ItemCard';
 import './style.css';
 
 const ReadAll = () => {
   const [items, setItems] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +22,13 @@ const ReadAll = () => {
   return items && (
     <div className="read-all">
       {items.map((item) => (
-        <ItemCard key={item._id} item={item} />
+        <div
+          key={item._id}
+          className="item-card-clickable"
+          onClick={() => navigate(`visualizar/${item._id}`)}
+        >
+          <ItemCard item={item} />
+        </div>
       ))}
     </div>
   );
