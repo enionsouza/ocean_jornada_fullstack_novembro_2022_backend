@@ -1,5 +1,6 @@
 import express from "express";
 import { MongoClient, ObjectId } from "mongodb";
+import cors from 'cors';
 
 // const URL = 'mongodb://127.0.0.1:27017';
 const URL = 'mongodb+srv://admin:x4fspn5Id8kKjFWy@cluster0.z1puxok.mongodb.net/';
@@ -13,6 +14,7 @@ const collection = bancoDados.collection('itens');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.get('/', (_, res) => {
   res.send('Hello World');
