@@ -35,7 +35,7 @@ app.get('/items/:id', async (req, res) => {
 // [POST] /items - Create item
 app.post('/items', async (req, res) => {
   await collection.insertOne(req.body);
-  res.send('Item successfully created!');
+  res.send({ message: 'Item successfully created!' });
 });
 
 // [PUT] /items/:id - Update item
@@ -46,14 +46,14 @@ app.put('/items/:id', async (req, res) => {
     };
   const id_to_update = new ObjectId(req.params.id);
   await collection.updateOne({_id: id_to_update}, {$set: newItem});
-  res.send(`Item updated: '${newItem.nome}'`);
+  res.send({message: `Item successfully updated: '${newItem.nome}'`});
 });
 
 // [DELETE] /items/:id - Delete item
 app.delete('/items/:id', async (req, res) => {
   const id_to_delete = new ObjectId(req.params.id);
   await collection.deleteOne({ _id: id_to_delete });
-  res.send('Item successfully deleted!');
+  res.send({ message: 'Item successfully deleted!' });
 });
 
 app.listen(process.env.PORT || 3000, () => {
