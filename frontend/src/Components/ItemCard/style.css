@@ -8,6 +8,10 @@
   padding: 1rem;
 }
 
+.item-card img {
+  width: 200px;
+}
+
 .item-card-title {
   display: flex;
   gap: 5px;
