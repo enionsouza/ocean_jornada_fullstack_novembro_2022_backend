@@ -22,7 +22,7 @@ const ReadById = () => {
   }
 
   return (
-    <ItemCard item={item} />
+    <ItemCard item={item} isDeleteEnabled />
   )
 };
 

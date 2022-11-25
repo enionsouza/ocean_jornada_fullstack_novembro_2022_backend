@@ -6,10 +6,20 @@
   box-shadow: 0px -8px 7px -2px #7c4c30, 0px 8px 7px -2px #7c4c30;
   background-color: #f6f6f6;
   padding: 1rem;
+  position: relative;
 }
 
 .item-card img {
   width: 200px;
+}
+
+.item-card-icon-delete {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  font-size: 1.5rem;
+  color: #DC3545;
+  cursor: pointer;
 }
 
 .item-card-title {
